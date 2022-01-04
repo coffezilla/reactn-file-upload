@@ -2,8 +2,6 @@
 
 header('Content-Type: application/json; charset=UTF-8');
 
-// include "../connect/bd_connect.php";
-
 //
 $dataResponse = array();
 $dataResponse['status'] = 0;
@@ -14,71 +12,26 @@ include 'WideImage/WideImage.php';
 
 // ========================================================
 // NEW VAR
-    // move_uploaded_file($_FILES['photo']['tmp_name'], './photos/' . $_FILES['photo']['name']);
-
 $fileUpload = $_FILES['file'];
-$fileName = $fileUpload["name"];
-
-// // $userEmail = addslashes(trim($_GET['email']));
-// // $userEmail = str_replace(" ", "", $userEmail);
-
-// // ========================================================
-// // CHECKING VALIDATION
+$fileName = 'upload/';
 
 // //PREVIEW 1 FOTOS
 if (!empty($fileUpload["name"])) {
     
 
-    if($fileUpload['type']!=='image/jpeg' && $fileUpload['type']!=='image/jpg' && $fileUpload['type']!=='image/png'){
-        $dataResponse["message"] = "Formato errado...";  
+    if($fileUpload['type'] !== 'image/jpeg' && $fileUpload['type'] !== 'image/jpg' && $fileUpload['type'] !== 'image/png'){
+        $dataResponse["message"] = "Formato errado...".$fileUpload['type'];  
     } else {
-        $dataResponse["message"] = "Formato Correto..."; 
-        // imagem em box quadrado
         $image = WideImage::load($fileUpload["tmp_name"]);
-        $image->saveToFile($fileName);
-        $dataResponse["message"] = "Upload Realizado!"; 
+        $image->saveToFile($fileName.$fileUpload["name"]);
+        $dataResponse["message"] = "Upload Realizado!".$fileUpload['type']; 
+        $dataResponse['status'] = 1;
+    }
 
-    } 
-$dataResponse["message"] = "Campo cheio ...".$fileUpload;
-// $dataResponse["message"] = "Campo cheio ...".$fileUpload;
 } else {
-    $dataResponse["message"] = "Campo File vazioz...".$fileUpload;
+    $dataResponse["message"] = "Campo File vazioz...";
 }
-
-
-// $validInputs = false;
-
-// // check input
-// if(
-// $authUserEmail != '' && strlen($authUserEmail) >= 3 &&
-// $currentTimestampClean != '' && strlen($currentTimestampClean) >= 3
-// ) {
-//     // pode passar
-//     $validInputs = true;
-
-// } else {
-//     $dataResponse['message'] = 'Campo em branco';
-//     $dataResponse['status'] = 2;
-// }
-
-// ========================================================
-
-// JWT auth 
-// include "../connect/auth.php";
-// $isAuth = verifyAuth($clientToken, $JWTServerkey);
-
-// if($isAuth) {
-
-    // ========================================================
-
-    $dataResponse['status'] = 1;
-
-    // ========================================================
-
-// } else {
-//     // nao autehnticado
-//     $dataResponse['status'] = 2;
-// }
+    $dataResponse["message"] = "xxx ".$fileUpload["type"];
 
 $resultadosJson = json_encode($dataResponse);
 echo $resultadosJson;
