@@ -19,6 +19,8 @@ export const handlePostPhoto = async (form) => {
 		uri: form.file.uri,
 	});
 
+	console.log('pablo', filename, type, form.file.uri);
+
 	await axios(
 		{
 			url: END_POINT_BASE + '/file-upload',
@@ -32,6 +34,7 @@ export const handlePostPhoto = async (form) => {
 		}
 	)
 		.then((response) => {
+			console.log('auth', response.data);
 			if (response.data.status === 1) {
 				responseRest = {
 					data: {

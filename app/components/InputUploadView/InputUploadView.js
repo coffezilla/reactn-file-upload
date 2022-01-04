@@ -14,7 +14,7 @@ export const InputUploadView = ({ form, name, setForm, onSubmit }) => {
 			presentationStyle: 0,
 			allowsEditing: true,
 			aspect: [1, 1],
-			quality: 0.5,
+			quality: 0.3,
 		});
 
 		if (!responseFile.cancelled) {
@@ -30,20 +30,26 @@ export const InputUploadView = ({ form, name, setForm, onSubmit }) => {
 	// opens local gallery
 	const handleGetPhoto = async () => {
 		// No permissions request is necessary for launching the image library
+		console.log('1');
 		const responseFile = await ImagePicker.launchImageLibraryAsync({
 			mediaTypes: ImagePicker.MediaTypeOptions.Images,
 			presentationStyle: 0,
 			allowsEditing: true,
 			aspect: [1, 1],
-			quality: 0.5,
+			quality: 0.3,
 		});
 
+		console.log('2');
+
 		if (!responseFile.cancelled) {
+			console.log('3');
 			setForm({
 				...form,
 				[name]: responseFile,
 			});
 		}
+
+		console.log('4');
 	};
 
 	// cancel upload
