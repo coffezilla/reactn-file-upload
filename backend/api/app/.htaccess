@@ -1,0 +1,12 @@
+#force www - https
+
+
+<IfModule mod_rewrite.c>
+   
+    RewriteEngine On
+    SetEnvIf Authorization .+ HTTP_AUTHORIZATION=$0
+
+    RewriteRule ^file-upload?$ /api/app/file_upload.php [NC,L]
+
+
+</IfModule>
