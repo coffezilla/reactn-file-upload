@@ -31,7 +31,7 @@ if (!empty($fileUpload["name"])) {
 } else {
     $dataResponse["message"] = "Campo File vazioz...";
 }
-    $dataResponse["message"] = "xxx ".$fileUpload["type"];
+
 
 $resultadosJson = json_encode($dataResponse);
 echo $resultadosJson;
