@@ -4,6 +4,8 @@ import * as ImagePicker from 'expo-image-picker';
 
 import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
 
+// IOS resize image: https://github.com/bamlab/react-native-image-resizer
+
 export const InputUploadView = ({ form, name, setForm, onSubmit }) => {
 	// tira a foto e salva os dados
 	// take photo using the phone
@@ -35,7 +37,7 @@ export const InputUploadView = ({ form, name, setForm, onSubmit }) => {
 			mediaTypes: ImagePicker.MediaTypeOptions.Images,
 			presentationStyle: 0,
 			allowsEditing: true,
-			aspect: [1, 1],
+			aspect: [2,1],
 			quality: 0.3,
 		});
 

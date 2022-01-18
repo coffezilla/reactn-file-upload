@@ -23,7 +23,7 @@ export const handlePostPhoto = async (form) => {
 
 	await axios(
 		{
-			url: END_POINT_BASE + '/file-upload',
+			url: END_POINT_BASE + '/file_upload.php',
 			method: 'POST',
 			data: formData,
 		},
