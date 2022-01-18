@@ -2,7 +2,6 @@ import axios from 'axios';
 
 // https://docs.expo.dev/versions/latest/sdk/imagepicker/
 const END_POINT_BASE = 'http://192.168.0.106/api/app';
-// const END_POINT_BASE = 'https://www.bhxsites.com.br/dev/reactn-file-upload/file_upload.php';
 
 export const handlePostPhoto = async (form) => {
 	let responseRest = { status: 0 };
